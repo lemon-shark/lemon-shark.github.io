@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Ormuco Technical Test Demo</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="css/opensans-font.css">
+	<link rel="stylesheet" type="text/css" href="fonts/line-awesome/css/line-awesome.min.css">
+	<!-- Jquery -->
+	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="form-v4">
+	<div class="page-content">
+		<div class="form-v4-content">
+			<div class="form-left">
+				<h2>QUESTION1:OVERLAP</h2>
+				<p class="text-1">A program that accepts two lines (x1,x2) and (x3,x4) on the x-axis and returns whether
+					they overlap. As an example, (1,5) and (2,6) overlaps but not (1,5) and (6,8).</p>
+                <h4>Idea:</h4>
+                <p>You only need to do 2 comparisions x4&ltx1 and x2&ltx3, if either case is true, the lines are not
+                    overlapping, thus very efficent. </p>
+                <p>Also, for 2 identical lines, for instance (1,1) and (1,1), or 2 lines share a same point, for
+                    instance (0,2) and (2,3) the program should return overlapping.</p>
+                <p>Note: You can input point in whatever order you want.i.e. (x2,x1) or (x4,x3), moreover the program
+                    validates the user input when they input nothing or non-numerical strings</p>
+				<h2>QUESTION2:COMPARE VERSION STRINGS</h2>
+				<p class="text-1">A software library that accepts 2 version string as input and returns whether one is
+					greater than, equal, or less than the other.</p>
+                <h4>Idea:</h4>
+                <p>The program should be able to identify 1.0.5 equals 1.00.05, and 2.0.0.0.1 is larger than 2. </p>
+                <p>Here we spilt each string by ".", and compare the number between each dot.</p>
+                <p>Note: the program validates the user input when they input nothing or non-numerical strings</p>
+			</div>
+			<form class="form-detail" action="#" method="post" id="myform">
+				<h2>TYPE TWO LINES</h2>
+				<div class="form-group">
+					<div class="form-row form-row-1">
+						<label >First Line: Point 1</label>
+						<input id="p1" type="text" name="first_name"  class="input-text">
+                        <label >First Line: Point 2</label>
+						<input id="p2" type="text" name="first_name"  class="input-text">
+					</div>
+					<div class="form-row form-row-1">
+						<label >Second Line: Point 1</label>
+						<input id="p3" type="text" name="last_name"  class="input-text">
+                        <label >Second Line: Point 2</label>
+						<input id="p4" type="text" name="last_name"  class="input-text">
+					</div>
+				</div>
+				<div class="form-row-last">
+                    <h2 id="demo1" style="color:red;"></h2>
+					<input onclick="overlap()" type="submit" name="register" class="register" value="Check Overlap">
+				</div>
+
+                <h2>TYPE IN TWO VERSION STRINGS</h2>
+                <div class="form-group">
+                    <div class="form-row form-row-1">
+                        <label >First Version String</label>
+                        <input id="s1" type="text" name="first_name"  class="input-text">
+                    </div>
+                    <div class="form-row form-row-1">
+                        <label >Second Version String</label>
+                        <input id="s2" type="text" name="last_name" class="input-text">
+                    </div>
+                </div>
+                <div class="form-row-last">
+                    <h2 id="demo2" style="color:red;"></h2>
+                    <input onclick="compareVersionString()" type="submit" name="register" class="register" value="Compare">
+                </div>
+			</form>
+		</div>
+	</div>
+	<script src="overlap.js"></script>
+    <script src="compareVersionStrings.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<script>
+		// just for the demos, avoids form submit
+		jQuery.validator.setDefaults({
+		  	debug: true,
+		  	success:  function(label){
+        		label.attr('id', 'valid');
+   		 	},
+		});
+		$( "#myform" ).validate({
+		  	rules: {
+			    password: "required",
+		    	comfirm_password: {
+		      		equalTo: "#password"
+		    	}
+		  	},
+		  	messages: {
+		  		first_line: {
+		  			required: "Please enter a first line"
+		  		},
+		  		second_line: {
+		  			required: "Please enter a second line"
+		  		},
+		  		first_version: {
+		  			required: "Please enter a version string"
+		  		},
+		  		second_version: {
+	  				required: "Please enter another version string"
+		  		},
+		  		comfirm_password: {
+		  			required: "Please enter a password",
+		      		equalTo: "Wrong Password"
+		    	}
+		  	}
+		});
+	</script>
+</body>
+</html>
